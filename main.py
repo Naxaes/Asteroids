@@ -7,7 +7,7 @@ import random
 from pygame.math import Vector2
 
 successes, fails = pygame.init()
-assert successes == 6 and not fails  # All 6 modules where successfully initialized.
+#assert successes == 6 and not fails  # All 6 modules where successfully initialized.
 
 
 SIZE = WIDTH, HEIGHT = 720, 480
@@ -120,7 +120,7 @@ class Projectile(pygame.sprite.Sprite):
         A sprite that moves across the screen. Will be deleted when it's off screen.
 
         Args:
-            radius:      x, y dimensions in pixels.
+            radius:    x, y dimensions in pixels.
             position:  x, y position on screen in pixels.
             direction: x, y position to head against
             speed:     Pixels per second
@@ -128,7 +128,7 @@ class Projectile(pygame.sprite.Sprite):
         super(Projectile, self).__init__()
 
         self.image = pygame.Surface((radius * 2, radius * 2))
-        self.rect = self.image.get_rect(center=position)
+        self.rect  = self.image.get_rect(center=position)
         self.image.set_colorkey(BACKGROUND_COLOR)
 
         self.position = Vector2(*position)
@@ -169,7 +169,7 @@ class PowerUp(Projectile):
     PIERCING_BULLET = 'Piercing bullet'
     SPLITTER_DESTRUCTION = 'Splitter destruction'
 
-    TYPES = [SPLITTER_DESTRUCTION, SLOW_MO, FAST_FIRE, EXTRA_LIFE, PIERCING_BULLET]
+    TYPES = [SLOW_MO, FAST_FIRE, EXTRA_LIFE, PIERCING_BULLET, SPLITTER_DESTRUCTION]
 
     COLOR = {
         SLOW_MO : COLORS['purple'],
@@ -240,6 +240,7 @@ class Explosion(pygame.sprite.Sprite):
         
 
 class FadingText(pygame.sprite.Sprite):
+
     def __init__(self, text, position, font=FONT_BIG, origin='topleft', color=COLORS['white'],
                  fade_in=0, hold_on=0.5, fade_out=0.5):
         super(FadingText, self).__init__()
@@ -450,7 +451,6 @@ def run_game():
     score = 0
 
     running = True
-    clock = pygame.time.Clock()
 
     while running:
 
